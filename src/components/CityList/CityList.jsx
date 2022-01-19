@@ -30,7 +30,7 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
 const CityList = ({ cities, onClickCity }) => {
     return (
         <ul>
-            { 
+            {
                 //funcion que retorna otra funcion
                 cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry))
             }
@@ -38,8 +38,15 @@ const CityList = ({ cities, onClickCity }) => {
     )
 }
 
+/*
+    city: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired
+*/
 CityList.propTypes = {
-    cities: PropTypes.array.isRequired,
+    cities: PropTypes.arrayOf(PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired
+    })).isRequired,
     onClickCity: PropTypes.func.isRequired
 }
 
